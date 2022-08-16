@@ -2,8 +2,9 @@ let nextButton = document.querySelector(".next");
 let prevButton = document.querySelector(".prev");
 let slides = document.querySelectorAll(".item");
 let nav = document.querySelectorAll("switch")
-let count = 0;
 let dots = document.querySelectorAll(".dot");
+let count = 0;
+
 
 function showDot() {
     for (i = 0; i < dots.length; i++) {
@@ -19,14 +20,14 @@ function removeSlide() {
 };
 
 function showSlide() {
-    removeSlide();
     if (count > slides.length - 1) {
         count = 0;
     }
     if (count < 0) {
         count = slides.length - 1;
     }
-    slides[count].classList.add("active")
+    removeSlide();
+    slides[count].classList.add("active");
     showDot();
 };
 showSlide();
@@ -40,8 +41,11 @@ nextButton.addEventListener("click", () => {
 prevButton.addEventListener("click", () => {
     count--;
     showSlide();
-
 });
 
-
-
+for (i = 0; i < dots.length; i++) {
+    dots[i].addEventListener("click", (e) => {
+        count = e.target.dataset.count - 1;
+        showSlide();
+    });
+};
