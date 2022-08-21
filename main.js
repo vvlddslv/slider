@@ -3,7 +3,11 @@ let prevButton = document.querySelector(".prev");
 let slides = document.querySelectorAll(".item");
 let nav = document.querySelectorAll("switch")
 let dots = document.querySelectorAll(".dot");
+let numberSlider = document.getElementById("number-of-slide");
+let allSlideNumber = document.getElementById("number-of-all-slide")
 let count = 0;
+
+allSlideNumber.innerHTML = slides.length;
 
 
 function showDot() {
@@ -26,6 +30,8 @@ function showSlide() {
     if (count < 0) {
         count = slides.length - 1;
     }
+    numberSlider.innerHTML = count + 1;
+
     removeSlide();
     slides[count].classList.add("active");
     showDot();
